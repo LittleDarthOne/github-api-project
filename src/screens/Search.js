@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StatusBar, StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 
 import Text      from '../components/Text';
 import SearchBox from '../components/SearchBox';
@@ -7,7 +7,12 @@ import Card      from '../components/Card';
 import RepoInfo  from '../components/RepoInfo';
 import Api       from '../services/Api';
 
+
 export default class Search extends Component {
+  static navigationOptions = {
+    title: 'BUSCAR REPOSITÓRIOS',
+  };
+
   state = {
     repos: [],
     response:'',
@@ -59,12 +64,12 @@ export default class Search extends Component {
   }
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     padding: 24,
-    paddingTop: 24 + (Platform.OS === 'ios' ? StatusBar.currentHeight : 20),
   },
 
   card: {

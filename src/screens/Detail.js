@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
 
-export default function Detail({ navigation }) {
-  return (
-    <View style={styles.container}>
-      <Text>Tela de detalhe</Text>
-      <Button title="Voltar pra tela de busca" onPress={() => navigation.goBack()} />
-    </View>
-  );
+export default class Detail extends Component {
+  static navigationOptions = {
+    title: 'REPOSITÓRIO',
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text>Tela de detalhe</Text>
+        <Button title="Voltar pra tela de busca" />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

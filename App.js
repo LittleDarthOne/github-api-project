@@ -1,7 +1,10 @@
+import React from 'react';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import Search from './src/screens/Search';
 import Detail from './src/screens/Detail';
+
+import Title from './src/components/Title';
 
 const MainNavigator = createStackNavigator(
   { 
@@ -9,8 +12,13 @@ const MainNavigator = createStackNavigator(
     Detail, 
   },
   {
+    headerBackTitleVisible: false,
+    headerLayoutPreset: 'center',
     defaultNavigationOptions: {
-      header: null,
+      headerStyle: {
+        elevation: 0,
+      },
+      headerTitle: ({children}) => <Title>{children}</Title>
     }
   }
 );
