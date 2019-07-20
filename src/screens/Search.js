@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Platform, StatusBar, StyleSheet, Text, View, Button } from 'react-native';
-import { Constants } from 'expo';
+import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
 import SearchBox from '../components/SearchBox';
+import Card      from '../components/Card';
+import RepoInfo  from '../components/RepoInfo';
 import Api       from '../services/Api';
-import Card from '../components/Card';
 
 export default class Search extends Component {
   state = {
@@ -28,16 +28,23 @@ export default class Search extends Component {
       <View style={styles.container}>
         <SearchBox onSearch={this.handleSearch} />
 
-        <Card style={styles.card} onPress={() => navigation.navigate('Detail')}>
-          <Text>Buscando por "{searchText}"</Text>
+        <Card style={styles.card} onPress={() => navigation.navigate('Detail')}>          
+          <RepoInfo 
+            avatar="https://facebook.github.io/react-native/docs/assets/favicon.png" 
+            name={searchText}
+            description={`Descrição do repo ${searchText}`}
+          />
         </Card>
 
         <Card style={styles.card}>
-          <Text>Buscando por "{searchText}"</Text>
+          <RepoInfo 
+            name={searchText}
+            description={`Descrição do repo ${searchText}`}
+          />
         </Card>
 
         <Card style={styles.card}>
-          <Text>Buscando por "{searchText}"</Text>
+          <RepoInfo />
         </Card>
       </View>
     );

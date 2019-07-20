@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
 
+import Text, { TextStyle } from './Text';
 
 export default class SearchBox extends Component {
   static defaultProps = {
@@ -21,7 +22,7 @@ export default class SearchBox extends Component {
         <Text style={styles.label}>{label}</Text>
 
         <TextInput 
-          style={[styles.label, styles.input]}
+          style={[TextStyle, styles.input]}
           onChangeText={(text) => {this.setState({ text });}} 
           placeholder={placeholder} 
           autoCapitalize="none"
@@ -40,9 +41,6 @@ const styles = StyleSheet.create({
 
   label: {
     width: '100%',
-    fontSize: 16,
-    lineHeight: 19,
-    color: '#5D5D5D',
     marginBottom: 5,
   },
 
