@@ -12,17 +12,9 @@ export default class SearchBox extends Component {
     text: undefined,
   };
 
-  handleTextChange = (text) => {
-    const { onSearch } = this.props;
-
-    this.setState({ text });
-
-    if (onSearch)
-      onSearch(text);
-  };
 
   render() {
-    const { label, placeholder, ...otherProps } = this.props;
+    const { label, placeholder, onSearch, ...otherProps } = this.props;
 
     return (
       <View style={styles.container}>
@@ -30,9 +22,10 @@ export default class SearchBox extends Component {
 
         <TextInput 
           style={[styles.label, styles.input]}
-          onChangeText={this.handleTextChange} 
+          onChangeText={(text) => {this.setState({ text });}} 
           placeholder={placeholder} 
           autoCapitalize="none"
+          onSubmitEditing={()=> { if (onSearch) onSearch(this.state.text);}}
           {...otherProps} 
         />
       </View>
