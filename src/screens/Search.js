@@ -28,9 +28,9 @@ export default class Search extends Component {
       <View style={styles.container}>
         <SearchBox onSearch={this.handleSearch} />
 
-        <Card style={styles.card} onPress={() => navigation.navigate('Detail')}>          
+        <Card style={styles.card} onPress={() => navigation.navigate('Detail')}>
           <RepoInfo 
-            avatar="https://facebook.github.io/react-native/docs/assets/favicon.png" 
+            userAvatar="https://facebook.github.io/react-native/docs/assets/favicon.png" 
             name={searchText}
             description={`Descrição do repo ${searchText}`}
           />
