@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { Platform, StatusBar, StyleSheet, Text, View, Button } from 'react-native';
+import { Constants } from 'expo';
 
 import SearchBox from '../components/SearchBox';
 import Api       from '../services/Api';
+import Card from '../components/Card';
 
 export default class Search extends Component {
   state = {
@@ -20,14 +22,23 @@ export default class Search extends Component {
 
   render() {
     const { searchText } = this.state;
+    const { navigation } = this.props;
 
     return (
       <View style={styles.container}>
         <SearchBox onSearch={this.handleSearch} />
 
-        <Text>Buscando por "{searchText}"</Text>
-        <Button title="Ir para tela de detalhe" onPress={() => navigation.navigate('Detail')} />
-       
+        <Card style={styles.card} onPress={() => navigation.navigate('Detail')}>
+          <Text>Buscando por "{searchText}"</Text>
+        </Card>
+
+        <Card style={styles.card}>
+          <Text>Buscando por "{searchText}"</Text>
+        </Card>
+
+        <Card style={styles.card}>
+          <Text>Buscando por "{searchText}"</Text>
+        </Card>
       </View>
     );
   }
@@ -38,5 +49,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     padding: 24,
+    paddingTop: 24 + (Platform.OS === 'ios' ? StatusBar.currentHeight : 20),
+  },
+
+  card: {
+    marginTop: 24,
   },
 });
