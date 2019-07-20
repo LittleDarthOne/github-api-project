@@ -41,9 +41,9 @@ export default class Search extends Component {
     const { navigation } = this.props;
 
     return(
-      <Card style={styles.card} onPress={() => navigation.navigate('Detail')}>
+      <Card style={styles.card} onPress={() => navigation.navigate('Detail', { repo: item })}>
         <RepoInfo 
-          userAvatar={item.owner.avatar_url} 
+          userAvatar={item.owner.avatar_url}
           name={item.name}
           description={item.description}
           stars={item.stargazers_count}
