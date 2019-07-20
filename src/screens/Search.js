@@ -19,9 +19,14 @@ export default class Search extends Component {
   };
 
   handleSearch = async (searchText) => {
-    const response = await Api.get(`/users/${searchText}/repos` );
-    console.log(response);
-    this.setState({ repos: response.data });
+    if (searchText.includes('/')){
+      const response = await Api.get(`https://api.github.com/repos/${searchText}`);
+      this.setState({ repos: [response.data] });
+      
+    } else {
+      const response = await Api.get(`/users/${searchText}/repos` ); 
+      this.setState({ repos: response.data });
+    }
   };
 
   renderEmptyMessage = () => {
