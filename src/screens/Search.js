@@ -14,9 +14,9 @@ export default class Search extends Component {
   };
 
   handleSearch = async (searchText) => {
-    const response = await Api.get(`/users/${searchText}` );
+    const response = await Api.get(`/users/${searchText}/repos` );
     console.log(response);
-    this.setState({ repos: [...Array(10)] });
+    this.setState({ repos: response.data });
   };
 
   renderEmptyMessage = () => {
@@ -25,22 +25,18 @@ export default class Search extends Component {
     );
   };
 
-  extractRepoKey = (repo, index) => `repo-${index}`;
+  extractRepoKey = (repo, index) => repo.id;
 
   renderRepoCard = ({ item, index }) => {
     const { navigation } = this.props;
 
-    const name = `Fake ${(index + 1)}`;
-    const description = `Descrição do repositório ${name}`;
-    const stars = index * 10;
-
     return(
       <Card style={styles.card} onPress={() => navigation.navigate('Detail')}>
         <RepoInfo 
-          userAvatar="https://facebook.github.io/react-native/docs/assets/favicon.png" 
-          name={name}
-          description={description}
-          stars={stars}
+          userAvatar={item.owner.avatar_url} 
+          name={item.name}
+          description={item.description}
+          stars={item.stargazers_count}
         />
       </Card>
     );
